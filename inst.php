@@ -16,11 +16,3 @@ function logout(){
 }
 
 
-function admin_logout(){
-	if(isset($_SESSION['username'])){
-    unset($_SESSION['username']);
-
-
-    }
-    header('Location: ../index.php');
-}

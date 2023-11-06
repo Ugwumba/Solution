@@ -18,8 +18,6 @@ function treat($data){
     return $data;
 }
 
-// $_POST['action'] = 50;
-// $_POST['id'] = 1;
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
 } else {
@@ -40,13 +38,18 @@ if ($action == 2) {
         $username = treat($_POST['username']);
         $password = treat($_POST['password']);
 
-        // Call the login method from the Account class
+        // Call the login method from the Admin class
         $output = $admin->login($username, $password);
 
+        header('Content-Type: application/json'); // Set the response content type to JSON
+        echo json_encode($output);
     } else {
         $output['error'] = true;
         $output['message'] = $error;
+        header('Content-Type: application/json'); // Set the response content type to JSON
+        echo json_encode($output);
     }
-    
-    echo json_encode($output);
 }
+
+
+?>
