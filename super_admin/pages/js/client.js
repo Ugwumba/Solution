@@ -70,7 +70,7 @@ $(function(){
                   }
                   else {
                       // Redirect to the specified page on successful login
-                      window.location.href = '../admin2/c_dashboard.php';
+                      window.location.href = '../admin/c_dashboard.php';
                   }
               }
           },

@@ -164,10 +164,11 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-lg-4 col-md-6">
                     <div class="card h">
                         <div class="card-header pb-0">
-                            <h6>CLIENTS</h6>
+                            <h6>CLIENTS/<small>with the same phone number</small></h6>
                         </div>
                         <div class="card-body p-3">
                             <div class="#">
@@ -193,6 +194,9 @@
                                             <th class="text-center text-uppercase">Id</th>
                                             <th class="text-uppercase ">First Name</th>
                                             <th class="text-center text-uppercase">Phone</th>
+                                            <th class="text-center text-uppercase">Action</th>
+
+
 
                                         </tr>
                                     </thead>
@@ -207,19 +211,4 @@
                     </div>
                 </div>
             </div>
-            <!-- <footer class="footer py-4  ">
-                <div class="container-fluid">
-                    <div class="row align-items-center justify-content-lg-between">
-                        <div class="col-lg-6 mb-lg-0 mb-4">
-                            <div class="copyright text-center text-sm text-muted text-lg-start">
-                                © <script>
-                                    document.write(new Date().getFullYear())
-                                </script>,
-                                CRUD OPERATIONS
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </footer> -->
         </div>

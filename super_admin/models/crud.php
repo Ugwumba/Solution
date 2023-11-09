@@ -5,7 +5,7 @@
     private $table = 'clients';
 
     // Post Properties
-    public $id, $firstname, $lastname, $email, $phone, $address, $status, $created_at;
+    public $id, $firstname, $lastname, $email, $phone, $address, $status, $about, $created_at;
     // Constructor with DB
     public function __construct($db) {
       $this->conn = $db;
@@ -43,6 +43,7 @@
       $stmt->execute();
       return $stmt;
   }
+
 
 
   
@@ -131,10 +132,6 @@ public function fetchphone($id = null) {
   $query->execute();
   return $query;
 }
-
-
-
-
 
 
 

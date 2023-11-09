@@ -301,6 +301,18 @@ include_once '../inst.php';
         Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
 </script>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the input element by ID
+            var role2Input = document.getElementById('role2');
+            
+            // Get the value of the input field
+            var role2Value = role2Input.value;
+            
+            // displaying the role2 in the console
+            console.log('Role2 value:', role2Value);
+        });
+    </script>
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->

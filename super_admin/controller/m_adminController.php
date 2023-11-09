@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+
 include_once '../inst.php';
 include_once '../config/Database.php';
 include_once '../models/m_admin.php';

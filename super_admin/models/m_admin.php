@@ -1,4 +1,5 @@
 <?php 
+
   class Crud {
     // DB stuff
     private $conn;

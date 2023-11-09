@@ -85,6 +85,8 @@ $(function () {
     });
   });
 
+
+
   //delete client
   $('#crud-delete-form').submit(function (e) {
     e.preventDefault();
@@ -212,13 +214,12 @@ function loadlist() {
       {
         data: null,
         render: function (data, type, row, meta) {
-            if (type === 'display') {
-                return meta.row + 1;
-            }
+          if (type === 'display') {
             return meta.row + 1;
+          }
+          return meta.row + 1;
         }
-    },
-    
+      },
       { data: 'firstname' },
       { data: 'lastname' },
       { data: 'email' },
@@ -236,13 +237,18 @@ function loadlist() {
         }
       },
       { data: 'created_at' },
-      
       {
         data: 'id',
         render: function (data, type) {
+          // Check the user's role (role2Value) here
           if (type === 'display') {
-            return `<a class="btn btn-sm btn-warning text-white" title="Edit" onclick="editModal('` + data + `')"><i class="fa fa-edit"></i>Edith</a> 
-                    <a class="btn btn-sm btn-danger text-white" title="Delete" onclick="deleteModal('` + data + `')"><i class="fa fa-trash"></i>Delete</a>`;
+            var role2Value = document.getElementById('role2').value;
+            if (role2Value === 'super_admin') {
+              return `<a class="btn btn-sm btn-warning text-white" title="Edit" onclick="editModal('` + data + `')"><i class="fa fa-edit"></i>Edit</a><a class="btn btn-sm btn-danger text-white" title="Delete" onclick="deleteModal('` + data + `')"><i class="fa fa-trash"></i>Delete</a>`;
+            }
+            if (role2Value === 'sub_admin') {
+              return `<a class="btn btn-sm btn-warning text-white" title="Edit" onclick="editModal('` + data + `')"><i class="fa fa-edit"></i>Edit</a>`;
+            }
           }
           return data;
         }
@@ -250,6 +256,7 @@ function loadlist() {
     ]
   });
 }
+
 
 
 function getItem(id) {
@@ -275,6 +282,8 @@ function getItem(id) {
     }
   });
 }
+
+
 
 
 
@@ -304,7 +313,7 @@ function loadphone() {
         }
     },
       { data: 'firstname' },
-      { data: 'phone' }
+      { data: 'phone' },
     ]
   });
 }
@@ -326,6 +335,7 @@ function updateClientCount() {
 
 // Call the function to update the client count when the page loads
 updateClientCount();
+
 
 
 

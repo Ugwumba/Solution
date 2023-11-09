@@ -2,19 +2,15 @@
 <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
-                    <h6 class="font-weight-bolder mb-0"><?php
-                                                        if (isset($_SESSION['id']) && isset($_SESSION['role'])) {
-                                                            if ($_SESSION['role'] == 'super_admin') {
-                                                                echo 'Super_Admin';
-                                                            } elseif ($_SESSION['role'] == 'sub_admin') {
-                                                                echo "Sub_Admin";
-                                                            }
-                                                        }
-                                                        ?>/<small class="text-muted">Dashboard</small></h6>
+                    <h6 class="font-weight-bolder mb-0">
+                        <small class="text-muted">Dashboard</small>
+                    </h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        <div class="input-group input-group-outline">
+                        <div class="input-group <input-group-outline">
+                        <input type="hidden" class="form-control" id="role2" name="role2" readonly value="<?php echo $_SESSION['role'];?>" style="color: #d63384; background:transparent;">
+
                         </div>
                     </div>
 
@@ -43,3 +39,4 @@
                 </div>
             </div>
         </nav>
+        
