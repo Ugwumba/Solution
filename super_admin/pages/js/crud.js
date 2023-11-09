@@ -337,6 +337,58 @@ function updateClientCount() {
 updateClientCount();
 
 
+// Fetch data for chart
+// Fetch data for chart and update card content
+function loadChart() {
+  $.ajax({
+    type: 'POST',
+    url: '../controller/CrudController.php',
+    data: { action: '7' },
+    dataType: 'json',
+    success: function (response) {
+      if (!response.error) {
+        // Assuming you have a canvas element with id 'myChart' for the chart
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        var myChart = new Chart(ctx, {
+          type: 'bar', // You can change the chart type as needed
+          data: {
+            labels: response.labels,
+            datasets: [{
+              label: 'Average Status',
+              data: response.data,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)', // You can customize the colors
+              borderColor: '#20c997',
+              borderWidth: 3
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+
+        // Render the chart inside the specified div
+        var chartDiv = document.querySelector('.chart');
+        chartDiv.innerHTML = '';
+        chartDiv.appendChild(ctx.canvas);
+
+        // Update card content based on chart data
+        var stateChartCard = document.getElementById('stateChartCard');
+        stateChartCard.querySelector('h6').innerText = 'State Chart';
+        stateChartCard.querySelector('p').innerText = 'Average Status of States';
+      }
+    }
+  });
+}
+
+// Call the function to load the chart and update card content when the page loads
+loadChart();
+
+
 
 
 

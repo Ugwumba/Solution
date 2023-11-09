@@ -133,6 +133,13 @@ public function fetchphone($id = null) {
   return $query;
 }
 
+ // Fetch data for chart
+ public function fetchAddressData() {
+  $query = "SELECT address, AVG(status) as average FROM $this->table GROUP BY address";
+  $stmt = $this->conn->prepare($query);
+  $stmt->execute();
+  return $stmt;
+}
 
 
   

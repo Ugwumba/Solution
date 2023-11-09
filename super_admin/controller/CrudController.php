@@ -1,5 +1,8 @@
 <?php 
-include_once '../inst.php';
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include_once '../config/Database.php';
 include_once '../models/crud.php';
 
@@ -226,6 +229,27 @@ if ($action == 8) {
   );
 
   echo json_encode($dataset);
+}
+
+//fetch for chart
+if ($action == 7) {
+  $result = $crud->fetchAddressData();
+  
+  // Fetch the data
+  $res_arr = $result->fetchAll(PDO::FETCH_ASSOC);
+
+  // Prepare data for the chart
+  $chartData = array(
+    'labels' => array(),
+    'data' => array()
+  );
+
+  foreach ($res_arr as $row) {
+    $chartData['labels'][] = $row['address'];
+    $chartData['data'][] = $row['average']; // Assuming you have a column named 'average' in your database
+  }
+
+  echo json_encode($chartData);
 }
 
 
