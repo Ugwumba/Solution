@@ -5,7 +5,7 @@
     private $table = 'clients';
 
     // Post Properties
-    public $id, $firstname, $lastname, $email, $phone, $address, $status, $about, $created_at;
+    public $id, $firstname, $lastname, $email, $phone, $address, $age, $status, $about, $created_at;
     // Constructor with DB
     public function __construct($db) {
       $this->conn = $db;
@@ -37,7 +37,7 @@
 
     // Get Single 
     public function fetchItem_single() {
-      $query = "SELECT id, firstname, lastname, email, phone, address, status FROM $this->table WHERE id = :id";
+      $query = "SELECT id, firstname, lastname, email, phone, address, age, status FROM $this->table WHERE id = :id";
       $stmt = $this->conn->prepare($query);
       $stmt->bindParam(':id', $this->id);
       $stmt->execute();
@@ -48,31 +48,31 @@
 
   
 
-   // Create 
-public function create() {
-  // Create statement
-  $sql = "INSERT INTO $this->table SET  firstname = ?, lastname=?, email=?, phone = ?, address = ? , status = ?";
+//    // Create 
+// public function create() {
+//   // Create statement
+//   $sql = "INSERT INTO $this->table SET  firstname = ?, lastname=?, email=?, phone = ?, address = ? , status = ?";
   
-  // Execute query
-  $query = $this->conn->prepare($sql);
-  if ($query->execute([$this->firstname, $this->lastname, $this->email, $this->phone, $this->address, $this->status])) {
-    return true;
-  } else {
-    // Print error if something goes wrong
-    $errorInfo = $query->errorInfo();
-    printf("Error: %s. SQLSTATE: %s.\n", $errorInfo[2], $errorInfo[0]);
-  }
-  return false;
-}
+//   // Execute query
+//   $query = $this->conn->prepare($sql);
+//   if ($query->execute([$this->firstname, $this->lastname, $this->email, $this->phone, $this->address, $this->status])) {
+//     return true;
+//   } else {
+//     // Print error if something goes wrong
+//     $errorInfo = $query->errorInfo();
+//     printf("Error: %s. SQLSTATE: %s.\n", $errorInfo[2], $errorInfo[0]);
+//   }
+//   return false;
+// }
 
   // Update 
 public function update() {
   // Create statement
-  $sql = "UPDATE $this->table SET firstname = ?, lastname=?, email=?, phone = ?, address = ?, status = ? WHERE id = ?";
+  $sql = "UPDATE $this->table SET firstname = ?, lastname=?, email=?, phone = ?, address = ?, age = ?, status = ? WHERE id = ?";
   
   // Execute query
   $query = $this->conn->prepare($sql);
-  if ($query->execute([$this->firstname, $this->lastname, $this->email, $this->phone, $this->address, $this->status, $this->id])) {
+  if ($query->execute([$this->firstname, $this->lastname, $this->email, $this->phone, $this->address, $this->age, $this->status, $this->id])) {
     return true;
   } else {
     // Print error if something goes wrong
@@ -135,7 +135,7 @@ public function fetchphone($id = null) {
 
  // Fetch data for chart
  public function fetchAddressData() {
-  $query = "SELECT address, AVG(status) as average FROM $this->table GROUP BY address";
+  $query = "SELECT address, AVG(age) as average FROM $this->table GROUP BY address";
   $stmt = $this->conn->prepare($query);
   $stmt->execute();
   return $stmt;

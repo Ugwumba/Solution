@@ -59,6 +59,7 @@ include_once '../inst.php';
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
       <div class="mx-3">
+      <a class="btn bg-gradient-primary w-100" href="C_change_psw.php" type="button">Change Password</a>
         <a class="btn bg-gradient-primary w-100" href="c_logout.php" type="button">Logout</a>
       </div>
     </div>
@@ -139,7 +140,7 @@ include_once '../inst.php';
                     </div>
                   </div>
                 </div>
-                <div class="card" style="width: 100%;">
+                <div class="card" style="width: 100%; padding:10px;">
                   <p class="text-sm">
                     <?php
                     if (isset($_SESSION['id'])) {
@@ -177,6 +178,14 @@ include_once '../inst.php';
                       <?php
                       if (isset($_SESSION['id'])) {
                         echo $_SESSION['email'];
+                      }
+                      ?>
+                    </li>
+                    <li class="list-group-item border-0 ps-0 text-sm">
+                      <strong class="text-dark">Age:</strong> &nbsp;
+                      <?php
+                      if (isset($_SESSION['id'])) {
+                        echo $_SESSION['age'];
                       }
                       ?>
                     </li>
@@ -221,10 +230,10 @@ include_once '../inst.php';
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
   <script>
-  document.getElementById('open-profile-edit-modal').addEventListener('click', function() {
-    $('#profile-edit-modal').modal('show'); // Assuming you are using jQuery
-  });
-</script>
+    document.getElementById('open-profile-edit-modal').addEventListener('click', function() {
+      $('#profile-edit-modal').modal('show'); // Assuming you are using jQuery
+    });
+  </script>
 
 </body>
 

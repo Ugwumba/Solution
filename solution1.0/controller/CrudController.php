@@ -29,56 +29,56 @@ if(isset($_POST['action'])) {
 }
 
 // create
-if ($action == 1) {
-  $error = $output = array();
-  if (empty($_POST['firstname'])) {
-    array_push($error, "First Name is Required");
-  }
-  if (empty($_POST['lastname'])) {
-    array_push($error, "Last Name is Required");
-  }
-  if (empty($_POST['email'])) {
-    array_push($error, "Email is Required");
-  }
-  if (empty($_POST['phone'])) {
-    array_push($error, "Phone is Required");
-  }
-  if (empty($_POST['address'])) {
-    array_push($error, "Address is Required");
-  }
-  if (empty($_POST['status']) || !is_numeric($_POST['status'])) { // checking if the status fiels is empty or is numeric
-    array_push($error, "Status is Required and must be an integer");
-} else {
-    $status = intval($_POST['status']); //converting the value to an integer using intval()
-    if ($status !== 0 && $status !== 1) {
-        array_push($error, "Invalid Status value. It should be either 0 or 1.");
-    }
-}
-  if (!is_numeric($_POST['phone']) || strlen($_POST['phone']) !== 11) {
-    array_push($error, "Phone must be exactly 11 digits in correct phone format");
-  }  
+// if ($action == 1) {
+//   $error = $output = array();
+//   if (empty($_POST['firstname'])) {
+//     array_push($error, "First Name is Required");
+//   }
+//   if (empty($_POST['lastname'])) {
+//     array_push($error, "Last Name is Required");
+//   }
+//   if (empty($_POST['email'])) {
+//     array_push($error, "Email is Required");
+//   }
+//   if (empty($_POST['phone'])) {
+//     array_push($error, "Phone is Required");
+//   }
+//   if (empty($_POST['address'])) {
+//     array_push($error, "Address is Required");
+//   }
+//   if (empty($_POST['status']) || !is_numeric($_POST['status'])) { // checking if the status fiels is empty or is numeric
+//     array_push($error, "Status is Required and must be an integer");
+// } else {
+//     $status = intval($_POST['status']); //converting the value to an integer using intval()
+//     if ($status !== 0 && $status !== 1) {
+//         array_push($error, "Invalid Status value. It should be either 0 or 1.");
+//     }
+// }
+//   if (!is_numeric($_POST['phone']) || strlen($_POST['phone']) !== 11) {
+//     array_push($error, "Phone must be exactly 11 digits in correct phone format");
+//   }  
 
 
-  if (empty($error)) {
-    $crud->firstname = treat($_POST['firstname']);
-    $crud->lastname = treat($_POST['lastname']);
-    $crud->email = treat($_POST['email']);
-    $crud->phone = treat($_POST['phone']);
-    $crud->address = treat($_POST['address']);
-    $crud->status = treat($_POST['status']);
+//   if (empty($error)) {
+//     $crud->firstname = treat($_POST['firstname']);
+//     $crud->lastname = treat($_POST['lastname']);
+//     $crud->email = treat($_POST['email']);
+//     $crud->phone = treat($_POST['phone']);
+//     $crud->address = treat($_POST['address']);
+//     $crud->status = treat($_POST['status']);
 
-    if ($crud->create()) {
-      $output['message'] = 'Saved Successfully';
-    } else {
-      $output['error'] = true;
-      $output['message'] = 'Error occurred during database insert';
-    }
-  } else {
-    $output['error'] = true;
-    $output['message'] = $error;
-  }
-  echo json_encode($output);
-}
+//     if ($crud->create()) {
+//       $output['message'] = 'Saved Successfully';
+//     } else {
+//       $output['error'] = true;
+//       $output['message'] = 'Error occurred during database insert';
+//     }
+//   } else {
+//     $output['error'] = true;
+//     $output['message'] = $error;
+//   }
+//   echo json_encode($output);
+// }
 
 
 // edit
@@ -102,6 +102,9 @@ if ($action == 2) {
   if (empty($_POST['address'])) {
     array_push($error, "Address is Required");
   }
+  if (empty($_POST['age'])) {
+    array_push($error, "Age is Required");
+  }
   if (empty($_POST['status']) || !is_numeric($_POST['status'])) {
     array_push($error, "Status is Required");
 } else {
@@ -124,6 +127,7 @@ if ($action == 2) {
     $crud->email = treat($_POST['email']);
     $crud->phone = treat($_POST['phone']);
     $crud->address = treat($_POST['address']);
+    $crud->age = treat($_POST['age']);
     $crud->status = treat($_POST['status']);
     if ($crud->update()) {
       $output['message'] = 'Updated Successfully';

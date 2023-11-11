@@ -63,7 +63,7 @@
                 </div>
                 <div class="card-body" id="stateChartCard">
                     <h6 class="mb-0">State Chart</h6>
-                    <p class="text-sm">Average Status of States</p>
+                    <p class="text-sm">Average Age of States</p>
                     <hr class="dark horizontal">
                     <div class="d-flex ">
                         <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -106,6 +106,7 @@
                                     <th class="text-center text-uppercase">Email</th>
                                     <th class="text-center text-uppercase">Phone</th>
                                     <th class="text-center text-uppercase">State</th>
+                                    <th class="text-center text-uppercase">Age</th>
                                     <th class="text-center text-uppercase">Status</th>
                                     <th class="text-center text-uppercase">Created_at</th>
                                     <th class="text-center text-uppercase">Action</th>
@@ -129,22 +130,6 @@
                     <h6>CLIENTS/<small>with the same phone number</small></h6>
                 </div>
                 <div class="card-body p-3">
-                    <div class="#">
-                        <h5 style="color:blueviolet !important;" class="card-header">
-                            <?php
-                            if (isset($_SESSION['id']) && isset($_SESSION['role'])) {
-                                if ($_SESSION['role'] == 'super_admin') {
-                                    echo '<a data-bs-toggle="modal" data-bs-target="#add-modal" class="btn btn-outline-primary btn-sm float-right"><i class="fa fa-plus"></i> Add Client</a>';
-                                } elseif ($_SESSION['role'] == 'sub_admin') {
-                                    echo " ";
-                                }
-                            }
-                            ?>
-
-
-                        </h5>
-                    </div>
-                    <hr>
                     <div style="border-radius: 10px;" class="table-responsive">
                         <table style="background-color:rgb(236,52,116);" id="phone-table" class="table table-bordered align-items-center mb-0">
                             <thead>

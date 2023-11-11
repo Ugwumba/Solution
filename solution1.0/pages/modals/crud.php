@@ -1,5 +1,5 @@
 <!-- Add  client-->
-<div class="modal fade" id="add-modal" data-bs-backdrop="static" data-bs-keyboard="false">
+<!-- <div class="modal fade" id="add-modal" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-sm modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -71,7 +71,7 @@
       </form>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Edit client-->
 <div class="modal fade" id="edit-modal" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -117,7 +117,14 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="name" class="col-sm-12">Address</label>
+            <label for="name" class="col-sm-12">Age</label>
+
+            <div class="col-sm-12">
+              <input type="text" class="form-control" id="age-edit" name="age" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="name" class="col-sm-12">State</label>
 
             <div class="col-sm-12">
               <input type="text" class="form-control" id="address-edit" name="address" required>

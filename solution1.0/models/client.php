@@ -4,7 +4,7 @@ class Account{
 	private $conn;
 	private $table='clients';
 
-    public $id, $firstname, $lastname, $email, $password, $phone, $address;
+    public $id, $firstname, $lastname, $email, $password, $phone, $address, $age;
     
 	
 	function __construct($db) {
@@ -97,6 +97,7 @@ class Account{
 					$_SESSION['phone'] = $row['phone'];
 					$_SESSION['address'] = $row['address'];
 					$_SESSION['about'] = $row['about'];
+					$_SESSION['age'] = $row['age'];
 
 
 					$output['message'] = 'Login Successful';

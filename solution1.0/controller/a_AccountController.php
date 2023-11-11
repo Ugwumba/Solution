@@ -52,4 +52,41 @@ if ($action == 2) {
 }
 
 
+// Change Password
+if ($action == 10) {
+    $error = $output = array();
+
+    if (empty($_POST['oldpassword'])) {
+        array_push($error, "Old Password is Required");
+    }
+    if (empty($_POST['newpassword'])) {
+        array_push($error, "New Password is Required");
+    }
+    if (empty($_POST['cnewpassword'])) {
+        array_push($error, "Password confirmation is Required");
+    }
+
+    if (empty($error)) {
+        $id = treat($_POST['id']);
+        $oldpassword = treat($_POST['oldpassword']);
+        $newpassword = treat($_POST['newpassword']);
+        $cnewpassword = treat($_POST['cnewpassword']);
+
+        $id = $_SESSION['id'];
+
+        // Call the changepassword method from the Admin class
+        $output = $admin->changepassword($id, $oldpassword, $newpassword, $cnewpassword);
+
+        header('Content-Type: application/json'); // Set the response content type to JSON
+        echo json_encode($output);
+    } else {
+        $output['error'] = true;
+        $output['message'] = $error;
+        header('Content-Type: application/json'); // Set the response content type to JSON
+        echo json_encode($output);
+    }
+}
+
+
+
 ?>

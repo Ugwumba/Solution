@@ -1,47 +1,49 @@
 $(function () {
   //add client
-  $('#crud-add-form').submit(function (e) {
-    e.preventDefault();
-    $.ajax({
-      type: 'POST',
-      url: '../controller/CrudController.php',
-      data: new FormData(this),
-      processData: false,
-      contentType: false,
-      dataType: 'json',
-      beforeSend: function () { $(".lbtn").show(); $(".nlbtn").hide(); },
-      success: function (response) {
-        if (response.error) {
-            $.each(response.message, function (i) {
-                toastr.error('<h6 style="color:red; font-size: 16px; padding:20px;"><i class="fa fa-exclamation-circle"></i> ' + response.message[i] + '</h6>', '', {
-                    closeButton: false,
-                    timeOut: 5000,
-                    positionClass: 'toast-top-right',
-                    tapToDismiss: false,
-                    backgroundColor: '#b92020', // Red background color
-                    textColor: '#fff', // White text color
-                });
-            });
-        } else {
-          $('#crud-add-form')[0].reset();
-          toastr.success('<h6 style="color:green; font-size: 16px; padding:20px;"><i class="fa fa-check"></i> ' + response.message + '</h6>', '',  {
-              closeButton: false,
-              timeOut: 5000,
-              positionClass: 'toast-top-right',
-              tapToDismiss: false,
-              backgroundColor: '#00ff00', // Green background color
-              textColor: '#fff', // White text color
-          });
-          $('#add-modal').modal('hide');
-          loadlist();
-          loadphone();
-      }
-        setInterval(function () { $(".nlbtn").show(); $(".lbtn").hide(); }, 1500);
-    }
+  // $('#crud-add-form').submit(function (e) {
+  //   e.preventDefault();
+  //   $.ajax({
+  //     type: 'POST',
+  //     url: '../controller/CrudController.php',
+  //     data: new FormData(this),
+  //     processData: false,
+  //     contentType: false,
+  //     dataType: 'json',
+  //     beforeSend: function () { $(".lbtn").show(); $(".nlbtn").hide(); },
+  //     success: function (response) {
+  //       if (response.error) {
+  //           $.each(response.message, function (i) {
+  //               toastr.error('<h6 style="color:red; font-size: 16px; padding:20px;"><i class="fa fa-exclamation-circle"></i> ' + response.message[i] + '</h6>', '', {
+  //                   closeButton: false,
+  //                   timeOut: 5000,
+  //                   positionClass: 'toast-top-right',
+  //                   tapToDismiss: false,
+  //                   backgroundColor: '#b92020', // Red background color
+  //                   textColor: '#fff', // White text color
+  //               });
+  //           });
+  //       } else {
+  //         $('#crud-add-form')[0].reset();
+  //         toastr.success('<h6 style="color:green; font-size: 16px; padding:20px;"><i class="fa fa-check"></i> ' + response.message + '</h6>', '',  {
+  //             closeButton: false,
+  //             timeOut: 5000,
+  //             positionClass: 'toast-top-right',
+  //             tapToDismiss: false,
+  //             backgroundColor: '#00ff00', // Green background color
+  //             textColor: '#fff', // White text color
+  //         });
+  //         $('#add-modal').modal('hide');
+  //         loadlist();
+  //         loadphone();
+  //     }
+  //       setInterval(function () { $(".nlbtn").show(); $(".lbtn").hide(); }, 1500);
+  //   }
     
     
-    });
-  });
+  //   });
+  // });
+
+
 
   //edit client
   $('#crud-edit-form').submit(function (e) {
@@ -225,6 +227,7 @@ function loadlist() {
       { data: 'email' },
       { data: 'phone' },
       { data: 'address' },
+      { data: 'age' },
       { data: 'status' ,
         render: function (data, type) {
           if (type === 'display' && data === 1) {
@@ -274,6 +277,7 @@ function getItem(id) {
       $('#lastname-edit').val(response.lastname);
       $('#email-edit').val(response.email);
       $('#phone-edit').val(response.phone);
+      $('#age-edit').val(response.age);
       $('#address-edit').val(response.address);
       $('#status-edit').val(response.status);
 
@@ -355,7 +359,7 @@ function loadChart() {
           data: {
             labels: response.labels,
             datasets: [{
-              label: 'Average Status',
+              label: 'Average Age',
               data: response.data,
               backgroundColor: 'rgba(75, 192, 192, 0.2)', // You can customize the colors
               borderColor: '#20c997',
@@ -379,7 +383,7 @@ function loadChart() {
         // Update card content based on chart data
         var stateChartCard = document.getElementById('stateChartCard');
         stateChartCard.querySelector('h6').innerText = 'State Chart';
-        stateChartCard.querySelector('p').innerText = 'Average Status of States';
+        stateChartCard.querySelector('p').innerText = 'Average Age of States';
       }
     }
   });
